@@ -1,0 +1,14 @@
+server:
+  port: ${SERVICE_PORT:8080}
+spring:
+  profiles:
+    include:
+      - commons
+  application:
+    name: mifel-service-saldo
+datasources:
+  web-services:
+    cuota-services:
+      get-cuota:
+        url: https://api.cambio.today/v1/quotes/{origen}/{destino}/json
+        api-key: ${CUOTA_API_KEY:7615%7CDd2iv7QjrbHqzSTDg6m75uqn3p~OkG65}

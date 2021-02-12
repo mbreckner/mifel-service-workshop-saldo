@@ -1,0 +1,37 @@
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+commons:
+  http:
+    loggers:
+      filter:
+        enabled: true
+        obfuscate:
+          request:
+            headers:
+              - Authorization
+    swagger:
+      api-info:
+        title: XXX
+        description:  Mifel XXX API
+        version:  0.0.1
+        terms-of-service-url: 
+        contact:
+          name: Modyo Service Delivery
+          url: https://www.modyo.com
+          email: apiteam@swagger.io
+        license: Modyo Service License Name
+        license-url: https://google.com
+      tags:
+        - name: cuota
+          description: Convertir diferentes monedas
+  aws-api-gw:
+    swagger:
+      apigateway-name: ${API_GATEWAY_NAME:<not defined>}
+      x-amazon-apigateway-integration:
+        connection-id: ${API_GATEWAY_CONNECTION_ID:<not defined>}
+        type: http
+        connection-type: VPC_LINK
+        uri: ${API_GATEWAY_BASE:<not defined>}
