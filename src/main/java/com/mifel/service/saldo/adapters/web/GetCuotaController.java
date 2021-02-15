@@ -6,10 +6,13 @@ import com.mifel.service.saldo.domain.model.CuotaMonetaria;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"getCuota"})
 @RestController
 @RequiredArgsConstructor
+@Validated
 public class GetCuotaController {
 
   private final GetCuotaUseCase getCuotaUseCase;
@@ -35,7 +39,7 @@ public class GetCuotaController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<CuotaMonetaria> getCuota(
       @ApiParam(value = "")
-      @RequestBody GetCuotaRequestDto request
+      @RequestBody @Valid @NotNull GetCuotaRequestDto request
   ) {
 
     CuotaMonetaria cuotaMonetaria = getCuotaUseCase.get(request.getOrigen(), request.getDestino(), request.getValor());
